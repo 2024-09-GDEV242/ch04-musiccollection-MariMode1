@@ -33,7 +33,7 @@ public class MusicOrganizer
     
     /**
      * Add a track file to the collection.
-     * @param filename The file name of the track to be added.
+     * @param filename +libs.
      */
     public void addFile(String filename)
     {
@@ -59,6 +59,31 @@ public class MusicOrganizer
             Track track = tracks.get(index);
             player.playSample(track.getFilename());
             System.out.println("Now playing: " + track.getArtist() + " - " + track.getTitle());
+        }
+    }
+    
+    /**
+     * Play random track 
+     */
+    public void shuffleplay(){
+        if(tracks.size() > 0)
+        {
+            Random rand = new Random();
+            int index = rand.nextInt(tracks.size());
+            playTrack(index);
+        }
+    }
+
+    /**
+     * Play random song once.
+     */
+    public void randomPlay(){
+        Random rand = new Random();
+        ArrayList<Track> leftToPlay = new ArrayList<Track>(tracks);
+        while(leftToPlay.size() > 0){
+            int index = rand.nextInt(leftToPlay.size());
+            Track t = leftToPlay.remove(index);
+            player.playSample(t.getFilename());
         }
     }
     
